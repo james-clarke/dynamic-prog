@@ -11,10 +11,10 @@ def memoized_cut_rod_aux(p: List[int], n: int, r: List[int]) -> int:
     if r[n] >= 0:
         return r[n]
     elif n == 0:
-        q = 0
+        q: int = 0
 
     else:
-        q = -sys.maxsize - 1
+        q: int = -sys.maxsize - 1
         for i in range(1, n + 1):
             q = max(q, p[i - 1] + memoized_cut_rod_aux(p, n - i, r))
     
@@ -23,8 +23,10 @@ def memoized_cut_rod_aux(p: List[int], n: int, r: List[int]) -> int:
 
 
 def main():
-    p = [1, 2, 3, 4, 5]
-    n = 5
+
+    n = int(input("Enter size of rod: "))
+    p = list(map(int, input("Enter prices [seperated by a space]: ").split()))
+    
     print(f"Max revenue: {memoized_cut_rod(p, n)}")
 
 if __name__ == "__main__":
